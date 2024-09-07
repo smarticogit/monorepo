@@ -2,3 +2,5 @@ node_modules
 apps/user/dist
 apps/url/dist
 .turbo
+data
+/packages/database/.env
