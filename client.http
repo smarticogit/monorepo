@@ -1,0 +1,10 @@
+@baseUrlUser = http://localhost:3000
+@baseUrlUrl = http://localhost:3001
+
+# @name list-users
+GET {{baseUrlUser}}
+
+###
+
+# @name list-urls
+GET {{baseUrlUrl}}
