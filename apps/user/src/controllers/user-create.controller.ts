@@ -1,13 +1,24 @@
-import { Body, ConflictException, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  ConflictException,
+  Controller,
+  Post,
+  UsePipes,
+} from '@nestjs/common';
 import { hash } from 'bcryptjs';
+import { ZodValidationPipe } from 'src/pipes/zod.validation-pipes';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UserCreateBodySchema } from 'src/schemas/user.schema';
+import {
+  userCreateBodySchema,
+  UserCreateBodySchema,
+} from 'src/schemas/user.schema';
 
 @Controller('/user')
 export class UserCreateController {
   constructor(private prismaService: PrismaService) {}
 
   @Post()
+  @UsePipes(new ZodValidationPipe(userCreateBodySchema))
   async handle(@Body() body: UserCreateBodySchema) {
     const { name, email, password } = body;
 
