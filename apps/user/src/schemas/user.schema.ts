@@ -21,6 +21,6 @@ export const tokenSchema = z.object({
   sub: z.string(),
 });
 
-export type UserCreateBodySchema = z.infer<typeof userCreateBodySchema>;
-export type UserAuthBodySchema = z.infer<typeof userAuthBodySchema>;
+export type UserCreateBody = z.infer<typeof userCreateBodySchema>;
+export type UserAuthBody = z.infer<typeof userAuthBodySchema>;
 export type TokenSchema = z.infer<typeof tokenSchema>;

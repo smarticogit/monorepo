@@ -32,3 +32,13 @@ Content-Type: application/json
 ###
 
 GET {{baseUrlUrl}}/url
+
+###
+
+POST {{baseUrlUrl}}/url
+Content-Type: application/json
+
+{
+  "original": "daniel",
+  "short": "http://3f5g7h"
+}

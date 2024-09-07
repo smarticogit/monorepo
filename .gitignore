@@ -4,3 +4,4 @@ apps/url/dist
 .turbo
 data
 /packages/database/.env
+client.http
