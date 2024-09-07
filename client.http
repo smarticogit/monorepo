@@ -14,3 +14,13 @@ Content-Type: application/json
   "email": "marcus@email.com",
   "password": "123456"
 }
+
+###
+
+POST {{baseUrlUser}}/auth
+Content-Type: application/json
+
+{
+  "email": "daniel@email.com",
+  "password": "123456"
+}
