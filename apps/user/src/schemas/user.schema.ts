@@ -17,5 +17,10 @@ export const userAuthBodySchema = z.object({
     .min(6, { message: 'Password must be at least 6 characters long' }),
 });
 
+export const tokenSchema = z.object({
+  sub: z.string(),
+});
+
 export type UserCreateBodySchema = z.infer<typeof userCreateBodySchema>;
 export type UserAuthBodySchema = z.infer<typeof userAuthBodySchema>;
+export type TokenSchema = z.infer<typeof tokenSchema>;

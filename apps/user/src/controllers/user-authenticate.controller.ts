@@ -40,7 +40,7 @@ export class UserAuthenticateController {
 
     const accessToken = this.jwtService.sign({ sub: user.id });
     return {
-      token: accessToken,
+      token: `Bearer ${accessToken}`,
     };
   }
 }
