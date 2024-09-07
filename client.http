@@ -1,10 +1,16 @@
 @baseUrlUser = http://localhost:3000
-@baseUrlUrl = http://localhost:3001
 
 # @name list-users
-GET {{baseUrlUser}}
+GET {{baseUrlUser}}/user
 
 ###
 
-# @name list-urls
-GET {{baseUrlUrl}}
+# @name create-user
+POST {{baseUrlUser}}/user
+Content-Type: application/json
+
+{
+  "name": "Daniel",
+  "email": "daniel@email.com",
+  "password": "123456"
+}
