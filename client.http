@@ -3,7 +3,7 @@
 @authToken = {{authenticate.response.body.token}}
 
 # @name list-users
-GET {{baseUrlUser}}/user
+GET {{baseUrlUser}}/users
 Authorization: {{authToken}}
 
 ###
@@ -31,14 +31,17 @@ Content-Type: application/json
 
 ###
 
-GET {{baseUrlUrl}}/url
+GET {{baseUrlUrl}}/urls/yxuvdx
 
 ###
 
-POST {{baseUrlUrl}}/url
+GET {{baseUrlUrl}}/urls
+
+###
+
+POST {{baseUrlUrl}}/urls
 Content-Type: application/json
 
 {
-  "original": "daniel",
-  "short": "http://3f5g7h"
+  "original": "http://www.google.com"
 }

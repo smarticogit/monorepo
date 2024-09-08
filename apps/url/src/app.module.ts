@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
-import { UrlCreateController } from './controllers/url-create.controller';
-import { UrlFindAllController } from './controllers/url-find-all.controller';
+import { UrlGenerateController } from './controllers/url-code.controller';
+import { UrlFindController } from './controllers/url-find.controller';
+import { UrlShortCodeController } from './controllers/url-short-code.controller';
 import { PrismaService } from './prisma/prisma.service';
 
 @Module({
-  controllers: [UrlFindAllController, UrlCreateController],
+  controllers: [
+    UrlFindController,
+    UrlGenerateController,
+    UrlShortCodeController,
+  ],
   providers: [PrismaService],
 })
 export class AppModule {}

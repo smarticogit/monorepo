@@ -1,8 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
-@Controller('/url')
-export class UrlFindAllController {
+@Controller('/urls')
+export class UrlFindController {
   constructor(private prismaService: PrismaService) {}
 
   @Get()

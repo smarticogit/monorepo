@@ -10,7 +10,7 @@ import { ZodValidationPipe } from 'src/pipes/zod.validation-pipes';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UserCreateBody, userCreateBodySchema } from 'src/schemas/user.schema';
 
-@Controller('/user')
+@Controller('/users')
 export class UserCreateController {
   constructor(private prismaService: PrismaService) {}
 
