@@ -9,18 +9,18 @@ import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcryptjs';
 import { ZodValidationPipe } from 'src/pipes/zod.validation-pipes';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UserAuthBody, userAuthBodySchema } from 'src/schemas/user.schema';
+import { AuthBody, authSchema } from 'src/schemas/user.schema';
 
 @Controller('/auth')
-export class UserAuthenticateController {
+export class AuthController {
   constructor(
     private jwtService: JwtService,
     private prismaService: PrismaService,
   ) {}
 
   @Post()
-  @UsePipes(new ZodValidationPipe(userAuthBodySchema))
-  async handle(@Body() body: UserAuthBody) {
+  @UsePipes(new ZodValidationPipe(authSchema))
+  async handle(@Body() body: AuthBody) {
     const { email, password } = body;
 
     const user = await this.prismaService.user.findUnique({

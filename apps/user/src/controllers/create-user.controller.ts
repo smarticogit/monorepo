@@ -8,15 +8,15 @@ import {
 import { hash } from 'bcryptjs';
 import { ZodValidationPipe } from 'src/pipes/zod.validation-pipes';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UserCreateBody, userCreateBodySchema } from 'src/schemas/user.schema';
+import { CreateUser, createUserSchema } from 'src/schemas/user.schema';
 
 @Controller('/users')
-export class UserCreateController {
+export class CreateUserController {
   constructor(private prismaService: PrismaService) {}
 
   @Post()
-  @UsePipes(new ZodValidationPipe(userCreateBodySchema))
-  async handle(@Body() body: UserCreateBody) {
+  @UsePipes(new ZodValidationPipe(createUserSchema))
+  async handle(@Body() body: CreateUser) {
     const { name, email, password } = body;
 
     const userEmailExists = await this.prismaService.user.findUnique({

@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
-export const urlGenerateBodySchema = z.object({
+export const createUrlSchema = z.object({
   original: z.string().url({ message: 'Invalid URL' }),
 });
 
-export const urlRedirectBodySchema = z.object({
+export const findUrlSchema = z.object({
   short: z.string().url({ message: 'Invalid URL' }),
 });
 
@@ -12,6 +12,6 @@ export const tokenSchema = z.object({
   sub: z.string(),
 });
 
-export type TokenSchema = z.infer<typeof tokenSchema>;
-export type UrlGenerateBody = z.infer<typeof urlGenerateBodySchema>;
-export type UrlRedirectBody = z.infer<typeof urlRedirectBodySchema>;
+export type CreateUrl = z.infer<typeof createUrlSchema>;
+export type FindUrl = z.infer<typeof findUrlSchema>;
+export type Token = z.infer<typeof tokenSchema>;

@@ -1,15 +1,14 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Delete, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { PrismaService } from 'src/prisma/prisma.service';
 
-@Controller('/users')
+@Controller('/urls')
 @UseGuards(AuthGuard('jwt'))
-export class UserFindAllController {
+export class DeleteUrlController {
   constructor(private prismaService: PrismaService) {}
 
-  @Get()
+  @Delete()
   async handle() {
-    const users = await this.prismaService.user.findMany();
-    return users;
+    return 'Delete';
   }
 }

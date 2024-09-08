@@ -9,12 +9,12 @@ Authorization: {{authToken}}
 ###
 
 # @name create-user
-POST {{baseUrlUser}}/user
+POST {{baseUrlUser}}/users
 Content-Type: application/json
 
 {
-  "name": "",
-  "email": "marcus@email.com",
+  "name": "Daniel",
+  "email": "daniel@email.com",
   "password": "123456"
 }
 
@@ -45,3 +45,15 @@ Content-Type: application/json
 {
   "original": "http://www.google.com"
 }
+
+###
+
+DELETE {{baseUrlUrl}}/urls
+Authorization: {{authToken}}
+
+###
+
+PUT {{baseUrlUrl}}/urls
+
+
+

@@ -3,7 +3,7 @@ import { Response } from 'express';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Controller()
-export class UrlShortCodeController {
+export class FindUrlController {
   constructor(private prismaService: PrismaService) {}
 
   @Get('urls/:code')

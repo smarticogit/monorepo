@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const userCreateBodySchema = z.object({
+export const createUserSchema = z.object({
   name: z
     .string()
     .min(3, { message: 'Name must be at least 3 characters long' }),
@@ -10,7 +10,7 @@ export const userCreateBodySchema = z.object({
     .min(6, { message: 'Password must be at least 6 characters long' }),
 });
 
-export const userAuthBodySchema = z.object({
+export const authSchema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
   password: z
     .string()
@@ -21,6 +21,6 @@ export const tokenSchema = z.object({
   sub: z.string(),
 });
 
-export type UserCreateBody = z.infer<typeof userCreateBodySchema>;
-export type UserAuthBody = z.infer<typeof userAuthBodySchema>;
-export type TokenSchema = z.infer<typeof tokenSchema>;
+export type CreateUser = z.infer<typeof createUserSchema>;
+export type AuthBody = z.infer<typeof authSchema>;
+export type Token = z.infer<typeof tokenSchema>;

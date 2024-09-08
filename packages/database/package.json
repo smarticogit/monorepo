@@ -1,11 +1,12 @@
 {
-  "name": "@repo/db",
+  "name": "database",
   "version": "0.0.0",
   "exports": {
     ".": "./src/index.ts"
   },
   "scripts": {
-    "db:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name v1"
   },
   "dependencies": {
     "@prisma/client": "^5.19.1"

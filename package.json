@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build"
+    "dev": "npm run prisma:setup && turbo run dev",
+    "build": "turbo build",
+    "prisma:setup": "npm --workspace=packages/database run prisma:generate && npm --workspace=packages/database run prisma:migrate"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,11 @@
   },
   "dependencies": {
     "@nestjs/config": "^3.2.3",
+    "@nestjs/passport": "^10.0.3",
+    "@types/passport-jwt": "^4.0.1",
+    "@nestjs/platform-express": "^10.0.0",
+    "bcryptjs": "^2.4.3",
+    "passport-jwt": "^4.0.1",
     "zod": "^3.23.8"
   }
 }
