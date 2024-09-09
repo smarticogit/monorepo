@@ -24,6 +24,12 @@ O serviço de banco de dados PostgreSQL possui duas tabelas (users, urls) e é c
     docker-compose up -build
     ```
 
+* Criar um arquivo .env dentro de packages/database
+
+  - ```sh
+    echo 'DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres?schema=public"' > packages/database/.env
+    ```
+
 * Instalar as tabelas e o schema do bando de dados:
 
   - ```sh

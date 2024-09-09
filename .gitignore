@@ -3,6 +3,8 @@ apps/user/dist
 apps/url/dist
 .turbo
 data
-/packages/database/.env
+packages/database/.env
+apps/url/.env
+apps/user/.env
 client.http
 .env
