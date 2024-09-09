@@ -10,7 +10,15 @@ O serviço de banco de dados PostgreSQL possui duas tabelas (users, urls) e é c
 
 ## Como testar o projeto:
 
-### Após clonar o projeto
+- Clonar o projeto
+  - ```sh
+    git clone https://github.com/smarticogit/monorepo.git
+    ```
+
+- Acessar a pasta
+  - ```sh
+    cd monorepo
+    ```
 
 - Instalar as dependências atrávés do seguinte o comando dentro da pasta monorepo:
   - ```sh
