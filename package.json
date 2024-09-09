@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run prisma:setup && turbo run dev",
+    "dev": "turbo run dev",
     "build": "turbo build",
     "prisma:setup": "npm --workspace=packages/database run prisma:generate && npm --workspace=packages/database run prisma:migrate"
   },

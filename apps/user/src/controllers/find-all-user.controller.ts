@@ -7,7 +7,11 @@ export class FindAllUserController {
 
   @Get()
   async handle() {
-    const users = await this.prismaService.user.findMany();
+    const users = await this.prismaService.user.findMany({
+      include: {
+        Url: true,
+      },
+    });
     return users;
   }
 }

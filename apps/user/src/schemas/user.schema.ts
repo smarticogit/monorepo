@@ -24,3 +24,22 @@ export const tokenSchema = z.object({
 export type CreateUser = z.infer<typeof createUserSchema>;
 export type AuthBody = z.infer<typeof authSchema>;
 export type Token = z.infer<typeof tokenSchema>;
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+  Url: Url[];
+};
+
+export type Url = {
+  id: string;
+  original: string;
+  short: string;
+  userId: string;
+  user: User;
+  deletedAt: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+};

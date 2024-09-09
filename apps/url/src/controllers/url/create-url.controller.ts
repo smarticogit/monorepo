@@ -1,4 +1,13 @@
-import { Body, Controller, Post, UsePipes } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Request,
+  UseGuards,
+  UsePipes,
+} from '@nestjs/common';
+import { Request as ReqExpress } from 'express';
+import { AuthOptional } from 'src/auth/auth-optional';
 import { ZodValidationPipe } from 'src/pipes/zod.validation-pipes';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUrl, createUrlSchema } from 'src/schemas/url.schema';
@@ -9,22 +18,46 @@ export class CreateUrlController {
   constructor(private prismaService: PrismaService) {}
 
   @Post()
+  @UseGuards(AuthOptional)
   @UsePipes(new ZodValidationPipe(createUrlSchema))
-  async handle(@Body() body: CreateUrl) {
+  async handle(
+    @Body() body: CreateUrl,
+    @Request() req: ReqExpress & { user: { sub: string } },
+  ) {
     const { original } = body;
+    const urlCode = UrlShorteningService.generateUrlCode();
 
-    const urlShortened = UrlShorteningService.generateShortUrl();
+    const urlShortened = `${req.protocol}://${req.get('host')}${req.originalUrl}/${urlCode}`;
 
-    await this.prismaService.url.create({
-      data: {
-        original,
-        short: urlShortened,
-      },
-    });
+    const { sub } = req?.user;
 
+    if (sub) {
+      const userFound = await this.prismaService.user.findUnique({
+        where: {
+          id: sub,
+        },
+      });
+
+      await this.prismaService.url.create({
+        data: {
+          original,
+          short: urlCode,
+          userId: userFound.id,
+        },
+      });
+    } else {
+      await this.prismaService.url.create({
+        data: {
+          original,
+          short: urlCode,
+          userId: null,
+        },
+      });
+    }
     return {
-      urlShortened,
-      originalUrl: original,
+      original,
+      urlCode,
+      short: urlShortened,
     };
   }
 }

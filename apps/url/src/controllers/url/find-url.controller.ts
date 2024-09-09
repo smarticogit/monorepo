@@ -8,12 +8,17 @@ export class FindUrlController {
 
   @Get('urls/:code')
   async handle(@Param('code') code: string, @Res() res: Response) {
-    const url = await this.prismaService.url.findUnique({
+    const url = await this.prismaService.url.update({
       where: { short: code },
+      data: {
+        count: {
+          increment: 1,
+        },
+      },
     });
 
     if (url) {
-      return res.redirect(url.original);
+      return res.status(301).redirect(url.original);
     } else {
       return res.status(404).send('URL not found');
     }

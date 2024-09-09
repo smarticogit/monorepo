@@ -6,7 +6,7 @@
   },
   "scripts": {
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev --name v1"
+    "prisma:migrate": "prisma migrate dev --name create_initial_tables"
   },
   "dependencies": {
     "@prisma/client": "^5.19.1"

@@ -7,7 +7,10 @@ GET {{baseUrlUser}}/users
 Authorization: {{authToken}}
 
 ###
+# @name list-urls
+GET {{baseUrlUrl}}/urls
 
+###
 # @name create-user
 POST {{baseUrlUser}}/users
 Content-Type: application/json
@@ -16,6 +19,18 @@ Content-Type: application/json
   "name": "Daniel",
   "email": "daniel@email.com",
   "password": "123456"
+}
+
+###
+
+# @name create-url
+
+POST {{baseUrlUrl}}/urls
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "original": "https://mercadolivre.com.br"
 }
 
 ###
@@ -29,30 +44,29 @@ Content-Type: application/json
   "password": "123456"
 }
 
-###
-
-GET {{baseUrlUrl}}/urls/yxuvdx
 
 ###
+GET {{baseUrlUrl}}/urls/ont3jo
 
+###
 GET {{baseUrlUrl}}/urls
 
 ###
-
 POST {{baseUrlUrl}}/urls
 Content-Type: application/json
+Authorization: {{authToken}}
 
 {
-  "original": "http://www.google.com"
+  "original": "https://www.alura.com.br"
 }
 
 ###
-
+# @name Delete-Url
 DELETE {{baseUrlUrl}}/urls
 Authorization: {{authToken}}
 
 ###
-
+# @name Update-Url
 PUT {{baseUrlUrl}}/urls
 
 
