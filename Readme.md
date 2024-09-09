@@ -17,8 +17,8 @@ O serviço de banco de dados PostgreSQL possui duas tabelas (users, urls) e é c
     npm install
     ```
 
-* Se certificar de um serviço do docker ativo;
-* Rodar o serviço de bando de dados na raiz do projeto:
+* Se certificar de um serviço ativo do Docker;
+* Rodar o serviço de banco de dados na raiz do projeto:
 
   - ```sh
     docker-compose up -build
