@@ -41,7 +41,7 @@ O serviço de banco de dados PostgreSQL possui duas tabelas (users, urls) e é c
 * Instalar as tabelas e o schema do bando de dados:
 
   - ```sh
-    npm prisma:setup
+    npm run prisma:setup
     ```
 
 * Criar um arquivo .env dentro de cada projeto (URL, USER) com uma "secret" para criptografia:
