@@ -24,7 +24,7 @@ export class CreateUrlController {
     @Body() body: CreateUrl,
     @Request() req: ReqExpress & { user: { sub: string } },
   ) {
-    const { original } = body;
+    const { url_original: original } = body;
     const urlCode = UrlShorteningService.generateUrlCode();
 
     const urlShortened = `${req.protocol}://${req.get('host')}${req.originalUrl}/${urlCode}`;
@@ -40,16 +40,18 @@ export class CreateUrlController {
 
       await this.prismaService.url.create({
         data: {
-          original,
-          short: urlCode,
-          userId: userFound.id,
+          url_original: original,
+          url_short: urlShortened,
+          url_code: urlCode,
+          userId: userFound?.id,
         },
       });
     } else {
       await this.prismaService.url.create({
         data: {
-          original,
-          short: urlCode,
+          url_original: original,
+          url_short: urlShortened,
+          url_code: urlCode,
           userId: null,
         },
       });

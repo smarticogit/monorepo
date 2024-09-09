@@ -9,6 +9,7 @@ Authorization: {{authToken}}
 ###
 # @name list-urls
 GET {{baseUrlUrl}}/urls
+Authorization: {{authToken}}
 
 ###
 # @name create-user
@@ -16,8 +17,8 @@ POST {{baseUrlUser}}/users
 Content-Type: application/json
 
 {
-  "name": "Daniel",
-  "email": "daniel@email.com",
+  "name": "Marcus",
+  "email": "marcus@email.com",
   "password": "123456"
 }
 
@@ -30,7 +31,7 @@ Content-Type: application/json
 Authorization: {{authToken}}
 
 {
-  "original": "https://mercadolivre.com.br"
+  "url_original": "https://www.alura.com"
 }
 
 ###
@@ -40,7 +41,7 @@ POST {{baseUrlUser}}/auth
 Content-Type: application/json
 
 {
-  "email": "daniel@email.com",
+  "email": "marcus@email.com",
   "password": "123456"
 }
 
@@ -57,17 +58,22 @@ Content-Type: application/json
 Authorization: {{authToken}}
 
 {
-  "original": "https://www.alura.com.br"
+  "url_original": "https://www.mercadolivre.com.br"
 }
 
 ###
 # @name Delete-Url
-DELETE {{baseUrlUrl}}/urls
+DELETE {{baseUrlUrl}}/urls/a983de4b-6aca-4146-a4f9-20a5bf234bb4
 Authorization: {{authToken}}
 
 ###
-# @name Update-Url
-PUT {{baseUrlUrl}}/urls
 
+# @name Update-Url
+PUT {{baseUrlUrl}}/urls/dc2304ed-1b5f-4b4c-b989-ce349b1e0718
+Authorization: {{authToken}}
+
+{
+  "url_original": "https://www.netflix.com"
+}
 
 

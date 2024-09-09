@@ -20,16 +20,17 @@ model User {
 }
 
 model Url {
-  id        String    @id @default(uuid()) @db.Uuid
-  original  String
-  short     String    @unique
-  userId    String?   @db.Uuid
-  user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  count     Int       @default(0)
-  deletedAt DateTime? @default(now())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @default(now())
+  id           String    @id @default(uuid()) @db.Uuid
+  url_original String
+  url_short    String
+  url_code     String    @unique
+  userId       String?   @db.Uuid
+  user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  count        Int       @default(0)
+  deletedAt    DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now())
 
-  @@index([short])
+  @@index([url_code])
   @@map("urls")
 }
