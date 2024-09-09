@@ -6,7 +6,6 @@ import { DeleteUrlController } from './controllers/url/delete-url.controller';
 import { FindAllUrlController } from './controllers/url/find-all-url.controller';
 import { FindUrlController } from './controllers/url/find-url.controller';
 import { UpdateUrlController } from './controllers/url/update-url.controller';
-import { AuthController } from './controllers/user/auth.controller';
 import { PrismaUrlRepository } from './database/prisma-url.repository';
 import { PrismaUserRepository } from './database/prisma-user.repository';
 import { envSchema } from './env';
@@ -31,7 +30,6 @@ import { UpdateUrlService } from './services/update-url.service';
     UpdateUrlController,
     FindUrlController,
     DeleteUrlController,
-    AuthController,
   ],
   providers: [
     PrismaService,
