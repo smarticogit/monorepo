@@ -29,7 +29,7 @@ export type User = {
   name: string;
   email: string;
   password: string;
-  createdAt: Date;
+  created_at: Date;
   Url: Url[];
 };
 
@@ -39,7 +39,7 @@ export type Url = {
   short: string;
   userId: string;
   user: User;
-  deletedAt: Date | null;
-  createdAt: Date;
-  updatedAt: Date;
+  deleted_at: Date | null;
+  created_at: Date;
+  updated_at: Date;
 };

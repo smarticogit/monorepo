@@ -14,6 +14,6 @@ export type User = {
   name: string;
   email: string;
   password: string;
-  createdAt: Date;
+  created_at: Date;
   Url: Url[];
 };

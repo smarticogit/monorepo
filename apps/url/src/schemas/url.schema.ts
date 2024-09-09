@@ -20,9 +20,10 @@ export type Url = {
   url_original: string;
   url_short: string;
   url_code: string;
-  deletedAt: Date | null;
-  createdAt: Date;
-  updatedAt: Date;
+  access_count: number;
+  deleted_at: Date | null;
+  created_at: Date;
+  updated_at: Date;
 };
 
 export type CreateUrl = {

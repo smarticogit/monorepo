@@ -21,7 +21,7 @@ export class PrismaUrlRepository implements UrlRepository {
     const urls = await this.prismaService.url.findMany({
       where: {
         userId: userId,
-        deletedAt: null,
+        deleted_at: null,
       },
     });
 
@@ -54,7 +54,7 @@ export class PrismaUrlRepository implements UrlRepository {
         url_code: urlCode,
       },
       data: {
-        count: {
+        access_count: {
           increment: 1,
         },
       },
@@ -68,7 +68,7 @@ export class PrismaUrlRepository implements UrlRepository {
       },
       data: {
         url_original: urlOriginal,
-        updatedAt: new Date(),
+        updated_at: new Date(),
       },
     });
   }
@@ -79,7 +79,7 @@ export class PrismaUrlRepository implements UrlRepository {
         id: urlId,
       },
       data: {
-        deletedAt: new Date(),
+        deleted_at: new Date(),
       },
     });
   }
