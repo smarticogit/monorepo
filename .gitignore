@@ -5,3 +5,4 @@ apps/url/dist
 data
 /packages/database/.env
 client.http
+.env

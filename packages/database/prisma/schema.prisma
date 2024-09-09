@@ -8,12 +8,12 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid()) @db.Uuid
-  email     String   @unique
-  name      String
-  password  String
-  createdAt DateTime @default(now())
-  Url       Url[]
+  id         String   @id @default(uuid()) @db.Uuid
+  email      String   @unique
+  name       String
+  password   String
+  created_at DateTime @default(now())
+  Url        Url[]
 
   @@index([email])
   @@map("users")
@@ -26,10 +26,10 @@ model Url {
   url_code     String    @unique
   userId       String?   @db.Uuid
   user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  count        Int       @default(0)
-  deletedAt    DateTime?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @default(now())
+  access_count Int       @default(0)
+  deleted_at   DateTime?
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @default(now())
 
   @@index([url_code])
   @@map("urls")

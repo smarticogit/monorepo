@@ -7,8 +7,15 @@ import { FindAllUrlController } from './controllers/url/find-all-url.controller'
 import { FindUrlController } from './controllers/url/find-url.controller';
 import { UpdateUrlController } from './controllers/url/update-url.controller';
 import { AuthController } from './controllers/user/auth.controller';
+import { PrismaUrlRepository } from './database/prisma-url.repository';
+import { PrismaUserRepository } from './database/prisma-user.repository';
 import { envSchema } from './env';
 import { PrismaService } from './prisma/prisma.service';
+import { CreateUrlService } from './services/create-url.service';
+import { DeleteUrlService } from './services/delete-utl.service';
+import { FindAllUrlService } from './services/find-all-url.service';
+import { FindUrlService } from './services/find-url.service';
+import { UpdateUrlService } from './services/update-url.service';
 
 @Module({
   imports: [
@@ -26,6 +33,22 @@ import { PrismaService } from './prisma/prisma.service';
     DeleteUrlController,
     AuthController,
   ],
-  providers: [PrismaService],
+  providers: [
+    PrismaService,
+    CreateUrlService,
+    FindUrlService,
+    DeleteUrlService,
+    UpdateUrlService,
+    FindAllUrlService,
+    {
+      provide: 'UrlRepository',
+      useClass: PrismaUrlRepository,
+    },
+    {
+      provide: 'UserRepository',
+      useClass: PrismaUserRepository,
+    },
+  ],
+  exports: [],
 })
 export class AppModule {}

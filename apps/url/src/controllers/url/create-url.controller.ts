@@ -3,19 +3,19 @@ import {
   Controller,
   Post,
   Request,
+  Response,
   UseGuards,
   UsePipes,
 } from '@nestjs/common';
-import { Request as ReqExpress } from 'express';
+import { Request as ReqExpress, Response as ResExpress } from 'express';
 import { AuthOptional } from 'src/auth/auth-optional';
 import { ZodValidationPipe } from 'src/pipes/zod.validation-pipes';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUrl, createUrlSchema } from 'src/schemas/url.schema';
-import { UrlShorteningService } from 'src/services/short-url-generator';
+import { CreateUrlService } from 'src/services/create-url.service';
 
 @Controller('/urls')
 export class CreateUrlController {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private createUrlService: CreateUrlService) {}
 
   @Post()
   @UseGuards(AuthOptional)
@@ -23,43 +23,22 @@ export class CreateUrlController {
   async handle(
     @Body() body: CreateUrl,
     @Request() req: ReqExpress & { user: { sub: string } },
+    @Response() res: ResExpress,
   ) {
     const { url_original: original } = body;
-    const urlCode = UrlShorteningService.generateUrlCode();
+    const baseUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+    const { user } = req;
 
-    const urlShortened = `${req.protocol}://${req.get('host')}${req.originalUrl}/${urlCode}`;
-
-    const { sub } = req?.user;
-
-    if (sub) {
-      const userFound = await this.prismaService.user.findUnique({
-        where: {
-          id: sub,
-        },
-      });
-
-      await this.prismaService.url.create({
-        data: {
-          url_original: original,
-          url_short: urlShortened,
-          url_code: urlCode,
-          userId: userFound?.id,
-        },
-      });
-    } else {
-      await this.prismaService.url.create({
-        data: {
-          url_original: original,
-          url_short: urlShortened,
-          url_code: urlCode,
-          userId: null,
-        },
-      });
-    }
-    return {
+    const output = await this.createUrlService.run(
       original,
-      urlCode,
-      short: urlShortened,
-    };
+      baseUrl,
+      user?.sub,
+    );
+
+    return res.status(200).json({
+      urlOriginal: output.urlOriginal,
+      urlCode: output.urlCode,
+      short: output.short,
+    });
   }
 }

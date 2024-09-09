@@ -17,8 +17,8 @@ POST {{baseUrlUser}}/users
 Content-Type: application/json
 
 {
-  "name": "Marcus",
-  "email": "marcus@email.com",
+  "name": "Daniel",
+  "email": "daniel@email.com",
   "password": "123456"
 }
 
@@ -31,7 +31,7 @@ Content-Type: application/json
 Authorization: {{authToken}}
 
 {
-  "url_original": "https://www.alura.com"
+  "url_original": "https://www.mercadopago.com.br"
 }
 
 ###
@@ -41,7 +41,7 @@ POST {{baseUrlUser}}/auth
 Content-Type: application/json
 
 {
-  "email": "marcus@email.com",
+  "email": "daniel@email.com",
   "password": "123456"
 }
 

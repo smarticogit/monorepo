@@ -1,35 +1,17 @@
 import { Controller, Get, Param, Res } from '@nestjs/common';
-import { Response } from 'express';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { Response as ReqExpress } from 'express';
+import { FindUrlService } from 'src/services/find-url.service';
 
 @Controller()
 export class FindUrlController {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private findUrlService: FindUrlService) {}
 
   @Get('urls/:code')
-  async handle(@Param('code') code: string, @Res() res: Response) {
-    const url = await this.prismaService.url.findUnique({
-      where: {
-        url_code: code,
-      },
-    });
-
-    if (!url) {
-      return res.status(404).send('URL not found');
-    }
-
-    if (url) {
-      await this.prismaService.url.update({
-        where: {
-          url_code: code,
-        },
-        data: {
-          count: {
-            increment: 1,
-          },
-        },
-      });
-    }
-    return res.status(200).redirect(url.url_original);
+  async handle(
+    @Param('code') code: string,
+    @Res() res: ReqExpress,
+  ): Promise<any> {
+    const url = await this.findUrlService.run(code);
+    return res.status(200).redirect(url.urlOriginal);
   }
 }
