@@ -20,8 +20,11 @@ export class PrismaUrlRepository implements UrlRepository {
   async findAll(userId: string): Promise<Url[]> {
     const urls = await this.prismaService.url.findMany({
       where: {
-        userId: userId,
+        userId,
         deleted_at: null,
+      },
+      include: {
+        user: true,
       },
     });
 
@@ -61,16 +64,18 @@ export class PrismaUrlRepository implements UrlRepository {
     });
   }
 
-  async updateById(urlId: string, urlOriginal: string): Promise<void> {
-    await this.prismaService.url.update({
+  async updateById(urlId: string, urlOriginal: string): Promise<Url> {
+    const url = await this.prismaService.url.update({
       where: {
-        url_code: urlId,
+        id: urlId,
       },
       data: {
         url_original: urlOriginal,
         updated_at: new Date(),
       },
     });
+
+    return url;
   }
 
   async delete(urlId: string): Promise<void> {

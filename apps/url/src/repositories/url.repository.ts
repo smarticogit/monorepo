@@ -6,6 +6,6 @@ export interface UrlRepository {
   findByCode(urlCode: string): Promise<Url | null>;
   findById(urlId: string): Promise<Url | null>;
   updateByCode(urlCode: string): Promise<void>;
-  updateById(urlId: string, urlOriginal: string): Promise<void>;
+  updateById(urlId: string, urlOriginal: string): Promise<Url>;
   delete(urlId: string): Promise<void>;
 }

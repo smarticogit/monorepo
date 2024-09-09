@@ -14,7 +14,7 @@ export class CreateUrlService {
   async run(urlOriginal: string, baseUrl: string, userId?: string) {
     const urlCode = UrlShorteningService.generateUrlCode();
 
-    const urlShortened = baseUrl.concat(urlCode);
+    const urlShortened = `${baseUrl}/${urlCode}`;
 
     if (userId) {
       const userFound = await this.userRepository.findById(userId);

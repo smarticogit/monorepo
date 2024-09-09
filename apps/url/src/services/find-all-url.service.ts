@@ -1,21 +1,20 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { UrlRepository } from 'src/repositories/url.repository';
+import { UserRepository } from 'src/repositories/user.repository';
 
 @Injectable()
 export class FindAllUrlService {
-  constructor(@Inject('UrlRepository') private urlRepository: UrlRepository) {}
+  constructor(
+    @Inject('UrlRepository') private urlRepository: UrlRepository,
+    @Inject('UserRepository') private userRepository: UserRepository,
+  ) {}
 
-  async run(urlCode: string) {
-    const url = await this.urlRepository.findByCode(urlCode);
+  async run(userId: string) {
+    const user = await this.userRepository.findById(userId);
 
-    if (!url) throw new BadRequestException('Url not found');
+    if (!user) throw new UnauthorizedException('Url not found');
 
-    if (url) {
-      await this.urlRepository.updateByCode(urlCode);
-    }
-
-    return {
-      urlOriginal: url.url_original,
-    };
+    const urls = await this.urlRepository.findAll(user.id);
+    return urls;
   }
 }

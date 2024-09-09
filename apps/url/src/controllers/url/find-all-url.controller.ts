@@ -14,7 +14,7 @@ export class FindAllUrlController {
     @Res() res: ResExpress,
   ) {
     const { user } = req;
-    const urls = this.findAllUrlService.run(user?.sub);
+    const urls = await this.findAllUrlService.run(user?.sub);
     return res.status(200).json(urls);
   }
 }
