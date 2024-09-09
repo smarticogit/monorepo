@@ -29,7 +29,7 @@ O serviço de banco de dados PostgreSQL possui duas tabelas (users, urls) e é c
 * Rodar o serviço de banco de dados na raiz do projeto:
 
   - ```sh
-    docker-compose up -build
+    docker-compose up --build
     ```
 
 * Criar um arquivo .env dentro de packages/database
